@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using BitsOnCoffee.Datatables.Extensions.Namespaces;
 
 namespace BitsOnCoffee.Datatables.Extensions
 {
@@ -16,9 +10,9 @@ namespace BitsOnCoffee.Datatables.Extensions
 			return CreateDatatable(datatable, selector, actionName, controllerName, string.Empty);
 		}
 
-		public static Datatable CreateDatatable(this Namespaces.Datatables datatable, string selector, string actionName, string controllerName, string areaName)
+		public static Datatable CreateDatatable(this Namespaces.Datatables datatable, string selector, string actionName, string controllerName, string areaName, object routeParams = null)
 		{
-			RouteValueDictionary attributes = new RouteValueDictionary();
+			RouteValueDictionary attributes = new RouteValueDictionary(routeParams);
 			attributes.Add("area", areaName);
 			var url = UrlHelper.GenerateUrl(null, actionName, controllerName, attributes, datatable.UrlHelper.RouteCollection, datatable.UrlHelper.RequestContext, true);
 
