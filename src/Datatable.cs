@@ -11,10 +11,11 @@ namespace BitsOnCoffee.Datatables.Extensions
 		private readonly string _url;
 		private Namespaces.Datatables _datatables;
 		private readonly bool _filter;
+		private readonly bool _paginate;
 
 		private IList<string> _columns;
 
-		public Datatable(Namespaces.Datatables datatables, string selector, string url, bool filter = true)
+		public Datatable(Namespaces.Datatables datatables, string selector, string url, bool paginate, bool filter = true)
 		{
 			_selector = selector;
 			_url = url;
@@ -106,7 +107,8 @@ namespace BitsOnCoffee.Datatables.Extensions
 				'filter': {1},
 				'sorting': [],
 				'ajax': '{2}',
-				'columns': [", _selector, _filter.ToString().ToLower(), _url);
+				'paginate': {3},
+				'columns': [", _selector, _filter.ToString().ToLower(), _url, _paginate.ToString().ToLower());
 
 			foreach (string column in _columns)
 			{
